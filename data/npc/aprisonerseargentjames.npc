@@ -1,0 +1,35 @@
+# GIMUD - Graphical Interface Multi User Dungeon
+# prisonerseargentjames.npc: Datenbank für den säumigen schuldner david brassacres
+
+Name = "A wounded prisoner"
+Outfit = (128,76-43-38-76)
+Home = [31998,32685,8]
+Radius = 3
+
+Behaviour = {
+ADDRESS,"hello$",! -> "Uh? What do you want?!"
+ADDRESS,"hi$",!    -> *
+
+ADDRESS,!          -> Idle
+BUSY,"hello$",!    -> "Just wait a minute!"
+BUSY,"hi$",!       -> *
+BUSY,!             -> NOP
+VANISH,!           -> "Still I am better in vanishing!"
+
+
+"bye"             -> "Good riddance.", Idle
+"farewell"      -> *
+
+"name"            -> "My name is not of your concern."
+"job"             -> "That's only my business, not yours."
+QuestValue(229)>1,"david" -> "Yes, yes... Its me .. you exposed me! Stop nagging me with that."
+QuestValue(229)>1,"brassacres" -> *
+
+
+QuestValue(19030503)=1,"Sergeant"    -> "Who sent you?",Topic=5
+Topic=5           -> "Get lost!",Idle
+
+Topic=5,"General Charles",   -> "Indeed I am Sergeant James. I have been imprisoned here for a long time. They torture me every other day. But the enemy has not seen me digging an escape route.I want you to report back to General Charles that I am alive and that according to my plans I am out of here any day!",SetQuestValue(19030503,2)
+
+
+}
